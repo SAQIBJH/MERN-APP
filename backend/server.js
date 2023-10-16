@@ -13,12 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
-app.get("/api/chats", (req,res) => {
-    res.send(chats);
-})
-app.get("/", (req, res) => {
-    res.send("welcome");
-})
+// app.get("/api/chats", (req,res) => {
+//     res.send(chats);
+// })
+
 
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
