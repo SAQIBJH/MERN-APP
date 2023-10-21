@@ -74,7 +74,7 @@ const MyChats = (fetchAgain) => {
         display={"flex"}
         flexDir={"column"}
         p={3}
-        bg="#F8F8F8"
+        bg="blackAlpha.600"
         width={"100%"}
         height={"100%"}
         borderRadius={"lg"}
@@ -95,14 +95,14 @@ const MyChats = (fetchAgain) => {
                   // onClick={handleFunction}
       width={"100%"}
       cursor={"pointer"}
-      bg="#E8E8E8"
+      bg="blackAlpha.700"
       _hover={{
         background: "#38B2AC",
         color: "white",
       }}
       display={"flex"}
       alignItems={"center"}
-      color="blackAlpha.800"
+      color="white"
       px={3}
       py={2}
       mb={2}
