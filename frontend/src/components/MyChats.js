@@ -63,6 +63,10 @@ const MyChats = (fetchAgain) => {
         My Chats
         <GroupChatModal>
           <Button
+          backgroundColor="rgba(255, 255, 255, 0.7)"
+    _hover={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+    paddingX={4}
+    paddingY={2}
             display={"flex"}
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}>
@@ -111,7 +115,12 @@ const MyChats = (fetchAgain) => {
       <Box display="flex">
         
                   {!chat.isGroupChat
-                    ? (<>
+                    ? (<div backgroundColor="rgba(255, 255, 255, 0.15)"
+  backdropFilter="blur(10px)"
+  {/* border="1px solid rgba(255, 255, 255, 0.2)" */}
+  boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+  p={6}
+  textAlign="center">
                         <Avatar
         mr={2}
         size={"sm"}
@@ -121,7 +130,9 @@ const MyChats = (fetchAgain) => {
       />
 
       <Box display="flex">
-        <Text fontSize="m">
+        <Text 
+        
+        fontSize="m">
           <b>{formattedName}</b>
         </Text>
   
