@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { ChatState } from "../context/ChatProvider";
-import { useToast, Box, Button, Stack, Text } from "@chakra-ui/react";
+import { useToast, Box, Button, Stack, Text,Avatar } from "@chakra-ui/react";
 import axios from "axios";
 import { AddIcon } from "@chakra-ui/icons";
 import ChatLoading from "./ChatLoading";
@@ -79,7 +79,74 @@ const MyChats = (fetchAgain) => {
         height={"100%"}
         borderRadius={"lg"}
         overflowY={"hidden"}>
-        {chats ? (
+        <Stack overflowY={"scroll"}>
+          {chats ? (
+            chats.map((chat) => {
+              // Find the user associated with the chat
+            const otherUser = chat.users.find(
+              (user) => user._id !== loggedUser._id
+            );
+            const formattedName = otherUser.name.charAt(0).toUpperCase() + otherUser.name.slice(1).toLowerCase();
+
+              return (
+                <Box
+                  onClick={() => setSelectedChat(chat)}
+
+                  // onClick={handleFunction}
+      width={"100%"}
+      cursor={"pointer"}
+      bg="#E8E8E8"
+      _hover={{
+        background: "#38B2AC",
+        color: "white",
+      }}
+      display={"flex"}
+      alignItems={"center"}
+      color="blackAlpha.800"
+      px={3}
+      py={2}
+      mb={2}
+       key={chat._id}
+      borderRadius={"lg"}>
+      <Box display="flex">
+        
+                  {!chat.isGroupChat
+                    ? (<>
+                        <Avatar
+        mr={2}
+        size={"sm"}
+        cursor={"pointer"}
+        name={formattedName.name}
+        src={otherUser.pic}
+      />
+
+      <Box display="flex">
+        <Text fontSize="m">
+          <b>{formattedName}</b>
+        </Text>
+  
+      </Box>
+                    </>)
+                    : chat.chatName}
+                
+      </Box>
+    
+
+
+                
+
+
+
+
+                </Box>
+              );
+            })
+          ) : (
+            <ChatLoading />
+          )}
+        </Stack>
+
+        {/* {chats ? (
           <Stack overflowY={"scroll"}>
             {chats.map((chat) => (
               <Box
@@ -92,7 +159,6 @@ const MyChats = (fetchAgain) => {
                 borderRadius={"lg"}
                 key={chat._id}>
                 <Text>
-                  {/* hello */}
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
@@ -102,7 +168,7 @@ const MyChats = (fetchAgain) => {
           </Stack>
         ) : (
           <ChatLoading />
-        )}
+        )} */}
       </Box>
     </Box>
   );
