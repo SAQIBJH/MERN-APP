@@ -100,18 +100,17 @@ const MyChats = ({ fetchAgain }) => {
                     {!chat.isGroupChat ? (
                       <>
                         <Avatar
-                          src={chat.users[1].pic}
+                          src={chat.users[1]?.pic || ""} // Use optional chaining to access pic property safely
                           alt={getSender(loggedUser, chat.users)}
                           boxSize="40px"
                           objectFit="cover"
                           borderRadius="50%"
                         />
-                        
-                        {getSender(loggedUser, chat.users).charAt(0).toUpperCase()
-                          +
-                          getSender(loggedUser, chat.users).slice(1)
-                        }
-                        
+
+                        {getSender(loggedUser, chat.users)
+                          .charAt(0)
+                          .toUpperCase() +
+                          getSender(loggedUser, chat.users).slice(1)}
                       </>
                     ) : (
                       chat.chatName
@@ -123,7 +122,7 @@ const MyChats = ({ fetchAgain }) => {
                       // display={"flex"}
                       marginLeft={50}
                       marginTop={-2}
-                       fontSize="xs">
+                      fontSize="xs">
                       <b>{chat.latestMessage.sender.name} : </b>
                       {chat.latestMessage.content.length > 50
                         ? chat.latestMessage.content.substring(0, 51) + "..."

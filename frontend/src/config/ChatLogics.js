@@ -41,13 +41,25 @@ export const isSameUser = (messages, m, i) => {
   return i > 0 && messages[i - 1].sender._id === m.sender._id;
 };
 
+// export const getSender = (loggedUser, users) => {
+//   console.log(users[0]._id)
+//   console.log(loggedUser?._id)
+//   if (users && users.length === 2) {
+//     return users[0]._id === loggedUser._id ? (users[1].name) : users[0].name;
+//   }
+//   return "Unknown Sender";
+// };
 export const getSender = (loggedUser, users) => {
-  console.log(users)
   if (users && users.length === 2) {
-    return users[0]?._id === loggedUser?._id ? users[1]?.name : users[0]?.name;
+    if (users[0] && users[0]._id === loggedUser?._id) {
+      return users[1]?.name;
+    } else if (users[1] && users[1]._id === loggedUser?._id) {
+      return users[0]?.name;
+    }
   }
   return "Unknown Sender";
 };
+
 
 
 
